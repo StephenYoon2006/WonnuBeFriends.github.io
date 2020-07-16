@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Button&Square</title>
+        <style>
+            #square{
+                width: 500px;
+                height: 500px;
+                background-color:black;
+            }
+            #button1{
+                background:red;
+                color: white;
+                width: 200px;
+            }
+            #button2{
+                background: blue;
+                color: white;
+                width: 200px;
+            }
+            #button3{
+                background: yellow;
+                color: black;
+                width: 200px;
+            }
+            #button4{
+                background: black;
+                color: white;
+                width: 200px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id = "square"></div>
+        <br>
+        <button id = "button1">red</button>
+        <button id = "button2">blue</button>
+        <button id = "button3">yellow</button>
+        <button id = "button4">reset</button>
+        <script>
+            let button1El = document.getElementById("button1");
+            let button2El = document.getElementById("button2");
+            let button3El = document.getElementById("button3");
+            let button4El = document.getElementById("button4");
+            let squareEl = document.getElementById("square");
+            function changeToRed(){
+                squareEl.style.background = "red";
+            }
+            function changeToBlue(){
+                squareEl.style.background="blue";
+            }
+            function changeToYellow(){
+                squareEl.style.background="yellow";
+            }
+            function changeToBlack(){
+                squareEl.style.background="black";
+            }
+            button1El.addEventListener("click", changeToRed)
+            button2El.addEventListener("click", changeToBlue)
+            button3El.addEventListener("click", changeToYellow)
+            button4El.addEventListener("click", changeToBlack)
+        </script>
+    </body>
+</html>

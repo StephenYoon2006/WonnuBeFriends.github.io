@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+    <title>calculator</title>
+    <style></style>
+</head>
+<body>
+<script>
+    let num1 = Number(prompt("Give me your first number"));
+    let operator = prompt("Give me the operation");
+    let num2 = Number(prompt("Give me your second number"));
+    if(operator === "+"){
+        alert(Number(num1 + num2));
+    } 
+    else if(operator === "-"){
+        alert((num1 - num2));
+    }
+    else if(operator === "*"){
+        alert(Number(num1 * num2));
+    }
+    else if(operator === "/"){
+        alert(Number(num1 * num2));
+    }
+
+    function squareNumber(x){
+        return x * x;
+    }
+    console.log(squareNumber(4));
+
+    let addNumbers = function(x,y){
+        return x + y;
+    }
+    console.log(addNumbers(1,2));
+
+    let power = (base, exp) => {
+        return Math.pow(base, exp);
+    }
+    console.log(power(2,3));
+</script>
+</body>
+</html>

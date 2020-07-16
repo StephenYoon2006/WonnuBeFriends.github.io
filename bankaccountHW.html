@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Bank Account</title>
+    </head>
+    <body>
+        <script>
+            class BankAccount {
+                constructor(){
+                    this.balance = 0;
+                }
+                deposit(money){
+                    let deposited = this.balance + money;
+                    this.balance = deposited;
+                    console.log("deposited" + money + ". Current balance is " + (this.balance))
+                    
+                }
+                withdraw(money){
+                    let withdrew = this.balance - money;
+                    if(this.balance > money){
+                        this.balance = this.balance - money;
+                        console.log("withdrew " + money + ". Current balance is " + (this.balance))
+                    }else if(this.balance < money){
+                        console.log("not enough funds")
+                    }
+                }
+                hello(money){
+                    console.log("current balance is: " + (this.balance))
+                }
+            }
+            let myAcc = new BankAccount();
+            
+            myAcc.deposit(100)
+            myAcc.withdraw(5)
+            myAcc.hello(0)  
+        </script>
+    </body>
+</html>

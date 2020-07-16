@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>5282020 HW</title>
+        <style>
+            #number{
+                color:red;
+                display: number + 1;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div id = "number">1</div>
+        <div id = "button">Click here</div>
+        <script>
+            let numberEl = document.getElementById("number");
+            let number = (1);
+            let buttonEl = document.getElementById("button");
+            function increase(){
+                number += 1;
+                numberEl.textContent = number;
+            }            
+            buttonEl.addEventListener("click", increase)
+            
+        </script>
+    </body>
+</html>

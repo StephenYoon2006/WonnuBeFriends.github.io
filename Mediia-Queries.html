@@ -1,0 +1,122 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Media Queries</title>
+</head>
+<style>
+    .hello {
+        background-color: green;
+        width: 25%;
+        height: 200px;
+        display: inline-block;
+        color: black;
+        transition: .3s all;
+    }
+
+    #thing2 {
+        display: none;
+    }
+
+    @media only screen and (max-width: 800px) {
+        .hello {
+            background: red;
+            width: 100%;
+            color: white;
+            padding: 50px;
+        }
+
+
+        #thing1 {
+            display: none;
+            background-color: blue;
+        }
+
+        #thing2 {
+            display: block;
+        }
+
+        .fadein {
+            width: 500px;
+            height: 500px;
+            background: blue;
+            animation: slide-from-right 3s;
+        }
+
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+    }
+
+    @keyframes color-change {
+        0% {
+            background: blue;
+        }
+
+        33% {
+            background: yellow;
+        }
+
+        66% {
+            background: red;
+
+        }
+
+        100% {
+            background: blue;
+        }
+    }
+
+@keyframes slide-from-right {
+    from {
+        margin-left: 500px;
+    }
+
+    to {
+        margin-left: 0px;
+    }
+}
+</style>
+
+<body>
+    <!-- <div class = "hello"></div>
+        <div class = "hello"></div>
+        <div class = "hello"></div> -->
+    <div id="thing1">thing 1</div>
+    <div id="thing2">thing 2</div>
+    <div class="fadein"></div>
+    <div id = "button">Text</div>
+    <P>I like <span class = "cat">cats</span>. My favorite animal is <span class = "cat">cats</span>. <span class = "cat">Cats</span> are pretty cute.</P>
+    <script>
+        // let grade = prompt("What grade did you get?").toUpperCase();
+        // if(grade === "A"){
+        //     alert("great job");
+        // }else if(grade === "B"){
+        //     alert("Pretty good");
+        // }else{
+        //     alert("better luck next time!");
+        // }
+        // let input = prompt("What is the password");
+        // while(input !== "1"){
+        //     input = prompt("What is the password?");
+        // }
+        // alert("You got the password");
+
+       let catElements = document.getElementsByClassName("cat");
+       for(let i = 0; i < catElements.length; i++){
+           catElements[i].textContent = "dogs";
+           catElements[i].style.fontweight = "bold";
+       } 
+    </script>
+
+
+    
+</body>
+
+</html>

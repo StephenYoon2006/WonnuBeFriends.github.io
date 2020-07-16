@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Game</title>
+    </head>
+    <body>
+        <canvas id = "game"></canvas>
+        <script src = "https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>
+        <script>
+            function setup(){
+                createCanvas(600, 800);
+                background("black");
+                fill("white");
+                for(let x = 0; x < 100; x ++){
+                    let xPos = Math.random() * 600;
+                    let yPos = Math.random() * 800;
+                    ellipse(xPos, yPos, 5, 5);
+            }
+            let x = 0
+            function draw(){}
+
+            }
+        </script>
+    </body>
+</html>
+
+<!-- ctx = context -->

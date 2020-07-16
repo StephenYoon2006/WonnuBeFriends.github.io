@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Media Queries</title>
+</head>
+<style>
+    body{
+        background: grey;
+    }
+    .hello {
+        background-color: green;
+        width: 25%;
+        height: 200px;
+        display: inline-block;
+        color: black;
+        transition: .3s all;
+    }
+
+    #thing2 {
+        display: none;
+    }
+    .fadein {
+        width: 500px;
+        height: 500px;
+        background: coral;
+        animation: slide-from-left 3s;}
+    
+    @media only screen and (max-width: 400px) {
+        .hello {
+            background: coral;
+            width: 100%;
+            color: yellowgreen;
+            padding: 50px;
+        }
+
+
+        #thing1 {
+            display: none;
+            background-color: coral;
+        }
+
+        #thing2 {
+            display: block;
+        }
+
+
+
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+    }
+
+    @keyframes color-change {
+        0% {
+            background: blue;
+        }
+
+        33% {
+            background: yellow;
+        }
+
+        66% {
+            background: red;
+
+        }
+
+        100% {
+            background: blue;
+        }
+    }
+
+        @keyframes slide-from-left {
+        from {
+            margin-left: 500px;
+        }
+
+        to {
+            margin-left: 0px;
+        }
+}
+</style>
+
+<body>
+
+    <div id="thing1">thing 1</div>
+    <div id="thing2">thing 2</div>
+    <div class="fadein"></div>
+    <div id = "button">Text</div>
+
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Classes Demo</title>
+    </head>
+    <body>
+        <script>
+            class Car { 
+                constructor(){
+                    this.distance = 0;
+                    this.fuel = 20;
+                    this.mpg = 25;
+                }
+                drive(miles){
+                    let fuelUsed = miles / this.mpg;
+                    if(this.fuel > fuelUsed){
+                        this.distance += miles;
+                        this.fuel -= fuelUsed;
+                        console.log("Total distance: " + this.distance);
+                        console.log("Fuel left:" + this.fuel);
+                    }else{
+                        console.log("not enough fuel");
+                    }
+                }
+                range(){
+                    return this.fuel * this.mpg;
+                }
+            }
+            let myCar = new Car();
+            myCar.drive(30);
+        </script>
+    </body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Button Demo</title>
+        <style></style>
+    </head>
+    <body>
+        <button id = "button">Click Me!</button>
+        <script>
+            function sayHello(){
+                alert("hello!");
+            }
+            let buttonEl = document.getElementById("button");
+            buttonEl.style.background = "red";
+            buttonEl.addEventListener("click", () => {
+                alert("hello!");
+            })
+        </script>
+    </body>
+</html>

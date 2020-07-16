@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Objects Demo</title>
+    </head>
+    <body>
+        <div id = "cars-container"></div>
+        <script>
+            // let grades = {
+            //     mark: "A",
+            //     stephen: "A",
+            //     jason: "B"
+            // }
+            // // name has an [grade]
+            // for(let name in grades){
+            //     console.log(name);
+            //     console.log(grades[name]);
+            // }
+
+            let cars = [
+                {
+                    brand: "Ford",
+                    model:"T",
+                    color:"black"
+                },
+                {
+                    brand:"Honda",
+                    model: "civic",
+                    color: "blue"
+                },
+                {
+                    brand: "Nissan",
+                    model: "Leaf",
+                    color: "red"
+                },
+                {
+                    brand: "Lambo",
+                    model: "L",
+                    color: "yellow"
+                }
+            ]
+            for(let i = 0; i < cars.length; i++){
+                document.getElementById("cars-container").innerHTML +=
+                `<div>
+                    <b>Brand: </b> ${cars[i].brand}
+                    <b>Model: </b> ${cars[i].model}
+                    <b>Color: </b> ${cars[i].color}
+                </div>
+                `
+            }
+        </script>
+    </body>
+</html>

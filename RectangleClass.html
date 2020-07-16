@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Rectangle Class</title>
+    </head>
+    <body>
+        <script>
+            class Rectangle{
+                constructor(){
+                    this.x = 0;
+                    this.y = 1;
+                    this.width = 5;
+                    this.height = 10;
+                }
+                getArea(){
+                    console.log((this.width) * (this.height))
+
+                }
+                translate(x, y){
+                    this.x = this.x + x;
+                    this.y = this.y + y;
+                }
+            }
+            let myRect = new Rectangle(0,1,5,10)
+            myRect.getArea()
+            myRect.translate(5,5)
+        </script>
+    </body>
+</html>

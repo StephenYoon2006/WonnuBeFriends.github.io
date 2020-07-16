@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Tic Tac Toe</title>
+        <style>
+            body{
+                text-align: center;
+                background-image: url("https://cdn.oneesports.gg/wp-content/uploads/2020/05/ClashRoyale_DragonSpa-1024x584.jpg")
+                
+            }
+        </style>
+    </head>
+    <body>
+        <script src = "https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>
+        <script>
+            let array = [
+
+            ]
+            let board = [
+                ["", "", ""],
+                ["", "", ""],
+                ["", "", ""]
+            ]
+            let drawboard = function(){
+                stroke("black");
+                strokeWeight(1);
+                line(200, 0, 200, 600)
+                line(400, 0, 400, 600)
+                line(0,200,600, 200)
+                line(0, 400, 600, 400)
+                
+                textSize(150);
+                textAlign("center", "center")
+                
+                for(let row = 0; row < board.length; row++){
+                    for(let col = 0; col < board.length; col++){
+                        text(board[row][col], 100 + 200 * col, 100 + 200 * row)
+                    }
+                }            
+
+            }
+            
+            function setup(){
+                createCanvas(600,600);
+                
+
+            }
+            let winner = "";
+            function draw(){
+                background(255);
+                drawboard();
+                fill("black");
+
+                if(winner === "X"){
+                    fill("red");
+                    text("X Wins!", 300, 300);
+                }
+                if (winner === "O"){
+                    fill("blue");
+                    text("O Wins!", 300, 300);
+                }
+            }
+            
+            let xturn = true
+            
+            function checkXWin(){
+                if(checkRow(0,"X")){
+                    showWin("X")}
+                else if(checkRow(1,"X")){
+                    showWin("X")}
+                else if(checkRow(2,"X")){
+                    showWin("X")
+                }
+                else if(checkCol(0, "X")){
+                    showWin("X")
+                }
+                else if(checkCol(1, "X")){
+                    showWin("X")
+                }
+                else if(checkCol(2, "X")){
+                    showWin("X")
+                }
+                else if(checkD("X")){
+                    showWin("X")
+                }
+                }
+            function checkRow(row, letter){
+                if(board[row][0] === letter && board[row][1] === letter && board[row][2] === letter){
+                    return true;
+                }
+                return false;
+            }
+            function checkCol(col, letter){
+                if(board[0][col] === letter && board[1][col] === letter && board[2][col] === letter){
+                    return true;
+                }
+                return false;
+            
+            }
+            
+            function checkD(letter){
+                if(board[0][0] === letter && board[1][1] === letter && board[2][2] === letter){
+                    return true;
+                }
+                else if(board[2][0] === letter && board[1][1] === letter && board[0][2] === letter){
+                    return true;
+                }
+                return false;
+            }
+            
+            function checkOWin(){
+                if(checkRow(0,"O")){
+                    showWin("O")}
+                else if(checkRow(1,"O")){
+                    showWin("O")
+                }
+                else if(checkRow(2,"O")){
+                    showWin("O")}
+                else if(checkCol(0, "O") || checkCol(1, "O") || checkCol(2,"O")){
+                    showWin("O")
+                }
+                else if(checkD("O")){
+                    showWin("O")
+                }
+                }
+            function showWin(letter){
+                text(letter + " Wins!", 300, 300)
+                winner = letter;
+                board = false;
+            }
+            function mousePressed(){
+                let col = Math.floor(mouseX/200);
+                let row = Math.floor(mouseY/200);
+
+                if(board[row][col] === ""){
+                    
+                    if(xturn === true){
+                        board[row][col] = "X"; 
+                        xturn = false;
+                        checkXWin();
+                    }
+                    else if(xturn === false){  
+                        board[row][col] = "O"; 
+                        xturn = true;
+                        checkOWin();
+                    }
+                    
+                
+                }
+            }
+        
+        </script>
+    </body>
+</html>
