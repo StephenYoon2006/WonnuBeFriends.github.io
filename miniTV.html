@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>MiniTV</title>
+    </head>
+    <style>
+        #tv{
+            width: 600px;
+            height: 500px;
+            
+        }
+        #clashRoyale{
+        }
+    </style>
+    <body>
+        <div id = "tv"></div>
+        <br>
+        <button id = "clashRoyale">Clash Royale</button>
+        <button id = "brawlStars">Brawl Stars</button>
+        <button id = "callOfDuty">Call of Duty</button>
+        <button id = "zombsroyale">Zombsroyale</button>
+        <script>
+            let clashRoyaleEl = document.getElementById("clashRoyale");
+            let brawlStarsEl = document.getElementById("brawlStars");
+            let callOfDutyEl = document.getElementById("callOfDuty");
+            let zombsroyaleEl = document.getElementById("zombsroyale");
+            let tvEl = document.getElementById("tv");
+            function changeToCr(){
+                img.src = ("https://lh3.googleusercontent.com/K-MNjDiO2WwRNwJqPZu8Wd5eOmFEjLYkEEgjZlv35hTiua_VylRPb04Lig3YZXLERvI");
+            
+            }
+
+            clashRoyaleEl.addEventListener("click", changeToCr);
+        </script>
+    </body>
+</html>

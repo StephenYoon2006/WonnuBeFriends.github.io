@@ -2,6 +2,12 @@
 <html>
     <head>
         <title>Pong</title>
+        <style>
+            body{
+                text-align: center;
+            }
+            
+        </style>
     </head>
     <body>
         <script src = "https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>
@@ -9,31 +15,141 @@
             function setup(){
                 createCanvas(800, 600);
             }
+            let padX = 0;
+            let padY = 0;
+            let rightpadv = 0;
+            let leftpadv = 0;
             let ballX = 0;
             let ballY = 0;
-            let velocityX = 3; 
-            let velocityY = 3;
+            let velocityX = 10; 
+            let velocityY = 10;
+            let newPadX = 780;
+            let newPadY = 0;
+            let redScore = 0;
+            let blueScore = 0;
+            
             function draw(){
                 background("black");
                 fill("white")
                 ellipse(ballX, ballY, 20, 20);
+                fill("red")
+                rect(padX, padY, 20, 150);
+                fill("blue")
+                rect(newPadX, newPadY, 20, 150);
                 ballX += velocityX
                 ballY += velocityY
-
+                padY += leftpadv
+                newPadY += rightpadv
+                textSize(15)
+                fill("red")
+                textAlign("left");
+                text("Red Score: " + redScore, 30, 20)
+                fill("blue")
+                textAlign("right");
+                text("Blue Score: " + blueScore, 770, 20)
+                
+                textSize(50)
+                gameOver();
+                
                 if(ballY > 600){
-                    velocityY = -3
+                    velocityY = -10
                 }
-                else if(ballY < 0){
-                    velocityY = 3
+                else if(ballY < 0){         
+                    velocityY = 10
                 }
-                else if(ballX > 800){
-                    velocityX = -3
+                else if(ballX > 770 && ballY > newPadY && ballY < newPadY + 200 && ballX < 800){
+                    velocityX = -10
                 }
-                else if(ballX < 0){
-                    velocityX = 3
+                else if(ballX < 30 && ballY > padY && ballY < padY + 200 && ballX > 0){
+                    velocityX = 10
+                }
+                else if(padY > 450){
+                    padY = 450;
+                }
+                else if(padY < 0){
+                    padY = 0;
+                }
+
+                if(newPadY > 450){
+                    newPadY = 450;
+
+                }
+
+                if(newPadY < 0){
+                    newPadY = 0;
+
+                }
+                
+                if(ballX < 0){
+                    blueScore ++
+                    ballX = 400;
+                    ballY = 300;
+                    //the ball stops moving
+                    velocityX = 0;
+                    velocityY = 0;
+                    //pause for 2 seconds
+                    setTimeout(start, 2000);
+                    //the ball starts moving again
+
+                }
+                if(ballX > 800){
+                    redScore ++
+                    ballX = 400;
+                    ballY = 300;
+                    //the ball stops moving
+                    velocityX = 0;
+                    velocityY = 0;
+                    //pause for 2 seconds
+                    setTimeout(start, 2000);
+                    //the ball starts moving again
+                }
+
+                }
+                function gameOver(){
+                    if(redScore === 7){
+                        textAlign("center", "center")
+                        fill("red");
+                        text("Red Wins!", 400, 300)
+                        velocityX = 0;
+                        velocityY = 0;
+                    }
+                    else if(blueScore === 7){
+                        textAlign("center", "center")
+                        text("Blue Wins!", 400, 300)
+                        velocityX = 0;
+                        velocityY = 0;
+                    }
+                }
+
+                function start(){
+                    velocityX = 10;
+                    velocityY = 10;
+                }    
+            
+            function keyPressed(){
+                if(keyCode === 38){
+                    rightpadv = -8;
+                }
+                else if(keyCode === 40){
+                    rightpadv = 8;
+                }
+                else if(keyCode === 87){
+                    leftpadv = -8;                    
+                }
+                else if(keyCode === 83){
+                    leftpadv = 8;
+                }
+            }
+            function keyReleased(){
+                if(keyCode === 38 || keyCode === 40){
+                    rightpadv = 0;
+                }
+                else if(keyCode === 87 || keyCode === 83){
+                    leftpadv = 0;
                 }
             }
             
+    
         </script>
     </body>
 </html>

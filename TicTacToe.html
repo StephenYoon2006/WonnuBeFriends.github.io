@@ -8,6 +8,7 @@
                 background-image: url("https://cdn.oneesports.gg/wp-content/uploads/2020/05/ClashRoyale_DragonSpa-1024x584.jpg")
                 
             }
+            
         </style>
     </head>
     <body>
@@ -123,8 +124,9 @@
                     showWin("O")
                 }
                 }
-            function showWin(letter){
+            function showWin(letter, id = "hello"){
                 text(letter + " Wins!", 300, 300)
+                
                 winner = letter;
                 board = false;
             }
