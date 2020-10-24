@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Snake</title>
+    <style>
+        body{
+            background-image: url("https://images.unsplash.com/photo-1472645977521-95bbf4f0a748?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80");
+        }
+    </style>
+</head>
+<body>
+    <script src = "https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>
+    <script>
+        let snake = [
+            [5, 10],
+            [4, 10],
+            [3, 10]
+        ];
+        let apple = [15, 10];
+        function setup(){
+            createCanvas(800, 800);
+        }
+        let score = 0
+
+        function draw(){
+            background("black")
+            fill("lightgreen")
+            for(let i = 0; i < snake.length; i++){
+                rect(snake[i][0] * 40, snake[i][1] * 40, 40, 40);
+            }
+            fill("red")
+            rect(apple[0] * 40, apple[1] * 40, 40, 40);
+    
+            textSize(30)
+            fill("yellow")
+            textAlign("left");
+                text("Score: " + score, 30, 40)
+            gameOver()
+        }
+        snakedies = false
+        let lastkey = 39; 
+        let currentkey = 39;
+        function moveSnake(){
+            if(snakedies === false){
+                if(snake[0][0] !== apple[0] || snake[0][1] !== apple[1]){
+                    snake.pop()
+                }
+                else{
+                    apple[0] = Math.floor(Math.random() * 20);
+                    apple[1] = Math.floor(Math.random() * 20);
+                    while (insnake(apple[0],apple[1])){
+                        apple[0] = Math.floor(Math.random() * 20);
+                        apple[1] = Math.floor(Math.random() * 20);
+                    }
+                    score++
+
+                }
+                if(currentkey === 38){
+                    snake.unshift([
+                        snake[0][0], 
+                        snake[0][1] -1,
+                        
+                    ]);
+                    
+                }
+                if(currentkey === 40){
+                    snake.unshift([
+                        snake[0][0], 
+                        snake[0][1] +1,
+                    ]);
+                }
+                if(currentkey === 37){
+                    snake.unshift([
+                        snake[0][0] - 1, 
+                        snake[0][1],
+                    ]);
+                }
+                if(currentkey === 39){
+                    snake.unshift([
+                        snake[0][0] + 1, 
+                        snake[0][1],
+                    ]);
+                }
+                
+                dyingsnake();
+            }
+            lastkey = currentkey;   
+        }
+        setInterval(moveSnake, 80)
+        function insnake(){
+            for(let i = 0; i < snake.length; i++){
+                if(apple[0] === snake[i][0] && apple[1] === snake[i][1]){
+                    return true;
+                }
+
+            }
+            return false;
+        }
+        function dyingsnake(){
+            if(snake[0][0] > 20 || snake[0][0] < 0 || snake[0][1] > 20 || snake[0][1] < 0){
+                snakedies = true
+            }
+            for(i = 1; i < snake.length; i++){
+                if(snake[0][0] === snake[i][0] && snake[0][1] === snake[i][1]){
+                    snakedies = true;
+                }
+            }
+        }
+        function gameOver(){
+            if(snakedies === true){
+                textAlign("center", "center")
+                fill("green");
+                text("Game Over!", 400, 300)
+            }
+        }
+
+    
+
+        function keyPressed(){
+            if(keyCode === 38 && lastkey !== 40){
+                currentkey = 38;  
+            }
+            if(keyCode === 40 && lastkey !==38){
+                currentkey = 40;
+            }
+            if(keyCode === 37 && lastkey !== 39){
+                currentkey = 37
+            }
+            if(keyCode === 39 && lastkey !== 37){
+                currentkey = 39
+            }
+        }
+        
+    </script>
+</body>
+</html>

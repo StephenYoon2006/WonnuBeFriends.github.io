@@ -1,0 +1,449 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        Horror Game Official
+    </title>
+    <style>
+        body{
+            margin: 0;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <script src = "https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>
+    <script>
+        let bg;
+        let y = 0;
+        
+        function setup(){
+            let height = window.innerHeight;
+            let width = window.innerWidth;
+            createCanvas(width, height);
+            bg = loadImage("https://img.freepik.com/free-vector/frightening-halloween-realistic-background_33099-1052.jpg?size=626&ext=jpg")
+            
+        }
+        class Spike{
+            constructor(){
+                this.x = 0;
+                this.y = 0;
+            } 
+            draw(){
+                fill("grey");
+                triangle(0,0,70,0,40,20)
+            }
+            generate(){
+                for(let x = 0; x < trispike.length; x ++){
+                    draw(trispike)
+                    console.log("hello")
+                }
+            }
+        }
+        class Player {
+            constructor(){
+                this.x = 0;
+                this.y = 0;
+                this.width = 50;
+                this.height = 50;
+                this.moving = true;
+                this.color = "red";
+            }
+        
+            moveUp(){
+                this.y -= 5;
+            }
+
+            moveDown(){
+                this.y += 5;
+            }
+
+            moveLeft(){
+                this.x -= 5;
+            }
+
+            moveRight(){
+                this.x += 5;
+            }
+            
+            draw(){
+                fill("blue")
+                rect(this.x, this.y, this.width, this.height)
+            }
+            
+        }
+        class Enemy1 {
+            constructor(){
+                this.x = 700;
+                this.y = 500;
+                this.moving = true;
+            }
+            draw(){
+                fill("#FEE12B")
+                ellipse(this.x, this.y, 70, 70)
+                
+            }
+            close(){
+                if(Math.abs(this.x - player.x) < 400 && Math.abs(this.y - player.y) < 400 && this.moving === true){
+                    if(player.x < this.x && player.y < this.y){
+                        this.x += Math.random()*10 -8; 
+                        this.y += Math.random()*10 -8;
+                    }
+                    if(player.x > this.x && player.y > this.y){
+                        this.x += Math.random()*10 +8; 
+                        this.y += Math.random()*10 +8;
+                    }
+                    if(player.x > this.x && player.y < this.y){
+                        this.x += Math.random()*10 + 8; 
+                        this.y += Math.random()*10 -8;
+                    }
+                    if(player.x < this.x && player.y > this.y){
+                        this.x += Math.random()*10 -8; 
+                        this.y += Math.random()*10 +8;
+                    }
+                }
+            }
+            update(){
+                if(this.moving === true){
+                    this.x += Math.random()*20 -10; 
+                    this.y += Math.random()*20 -10;
+                }
+            }
+            fail(){
+                if(Math.abs(this.x - player.x) < 40 && Math.abs(this.y - player.y) < 40){
+                    fail = true;
+                    this.moving = false;
+                    player.moving = false;
+                    
+                }
+            }
+        }
+        class Enemy2 {
+            constructor(){
+                this.x = 700;
+                this.y = 500;
+                this.moving = true;
+            }
+            draw(){
+                fill("white")
+                ellipse(this.x, this.y, 70, 70)
+            }
+            close(){
+                if(Math.abs(this.x - player.x) < 400 && Math.abs(this.y - player.y) < 400 && this.moving === true){
+                    if(player.x < this.x && player.y < this.y){
+                        this.x += Math.random()*10 -8; 
+                        this.y += Math.random()*10 -8;
+                    }
+                    if(player.x > this.x && player.y > this.y){
+                        this.x += Math.random()*10 +8; 
+                        this.y += Math.random()*10 +8;
+                    }
+                    if(player.x > this.x && player.y < this.y){
+                        this.x += Math.random()*10 + 8; 
+                        this.y += Math.random()*10 -8;
+                    }
+                    if(player.x < this.x && player.y > this.y){
+                        this.x += Math.random()*10 -8; 
+                        this.y += Math.random()*10 +8;
+                    }
+                }
+            }
+            update(){
+                if(this.moving === true){
+                    this.x += Math.random()*20 -10; 
+                    this.y += Math.random()*20 -10;
+                }
+            }
+            fail(){
+                if(Math.abs(this.x - player.x) < 40 && Math.abs(this.y - player.y) < 40){
+                    fail = true;
+                    this.moving = false;
+                    player.moving = false;
+                    moon = true;
+                }
+            }
+        }
+
+        class WallOne {
+            constructor(){
+                this.x = 900;
+                this.y = 150;
+                this.height = 300;
+                this.width = 40;
+            }
+            draw(){
+                fill("red")
+                rect(this.x, this.y, this.width, this.height)
+            }
+
+            collisionrightOne(){
+                if(player.x + player.width === this.x && player.y + player.height> this.y && player.y < this.y + this.height){
+                    colliderightOne = true;
+                    
+                }
+                else{
+                    colliderightOne = false;
+                }
+            }
+                
+            collisionbottomOne(){
+                if(player.y + player.height === this.y && player.x + player.width > this.x && player.x < this.x + this.width){
+                    collidebottomOne = true;
+                    
+                }
+                else{
+                    collidebottomOne = false;
+                }
+            }
+            
+            collisionleftOne(){
+                if(player.x === this.x + this.width && player.y  + player.height> this.y && player.y < this.y + this.height){
+                    collideleftOne = true;
+                    
+                }
+                else{
+                    collideleftOne = false;
+                }
+            }
+                
+            collisiontopOne(){
+                if(player.y === this.y + this.height && player.x + player.width > this.x && player.x < this.x + this.width){
+                    collidetopOne = true;
+                }
+                else{
+                    collidetopOne = false;
+                }
+            }        
+        }
+         
+        class WallTwo {
+            constructor(){
+                this.x = 1300;
+                this.y = 600;
+                this.height = 300;
+                this.width = 40;
+            }
+            draw(){
+                fill("#FF0800")
+                rect(this.x, this.y, this.width, this.height)
+            }
+
+            collisionrightTwo(){
+                if(player.x + player.width === this.x && player.y + player.height> this.y && player.y < this.y + this.height){
+                    colliderightTwo = true;
+                    
+                }
+                else{
+                    colliderightTwo = false;
+                }
+            }
+                
+            collisionbottomTwo(){
+                if(player.y + player.height === this.y && player.x + player.width > this.x && player.x < this.x + this.width){
+                    collidebottomTwo = true;
+                    
+                }
+                else{
+                    collidebottomTwo = false;
+                }
+            }
+            
+            collisionleftTwo(){
+                if(player.x === this.x + this.width && player.y  + player.height> this.y && player.y < this.y + this.height){
+                    collideleftTwo = true;
+                    
+                }
+                else{
+                    collideleftTwo = false;
+                }
+            }
+                
+            collisiontopTwo(){
+                if(player.y === this.y + this.height && player.x + player.width > this.x && player.x < this.x + this.width){
+                    collidetopTwo = true;
+                }
+                else{
+                    collidetopTwo = false;
+                }
+            }        
+        }
+        
+        class Wall3 {
+            constructor(){
+                this.x = 200;
+                this.y = 0;
+                this.height = 100;
+                this.width = 500;
+            }
+            draw(){
+                fill("#FF0800")
+                rect(this.x, this.y, this.width, this.height)
+            }
+
+            collisionright3(){
+                if(player.x + player.width === this.x && player.y + player.height> this.y && player.y < this.y + this.height){
+                    collideright3 = true;
+                    
+                }
+                else{
+                    collideright3 = false;
+                }
+            }
+                
+            collisionbottom3(){
+                if(player.y + player.height === this.y && player.x + player.width > this.x && player.x < this.x + this.width){
+                    collidebottom3 = true;
+                    
+                }
+                else{
+                    collidebottom3 = false;
+                }
+            }
+            
+            collisionleft3(){
+                if(player.x === this.x + this.width && player.y  + player.height> this.y && player.y < this.y + this.height){
+                    collideleft3 = true;
+                    
+                }
+                else{
+                    collideleft3 = false;
+                }
+            }
+                
+            collisiontop3(){
+                if(player.y === this.y + this.height && player.x + player.width > this.x && player.x < this.x + this.width){
+                    collidetop3 = true;
+                }
+                else{
+                    collidetop3 = false;
+                }
+            }        
+        } 
+        let wallTwo = new WallTwo();  
+        let wall3 = new Wall3
+        let wallOne = new WallOne();
+        let player = new Player();
+        let enemy1 = new Enemy1();
+        let enemy2 = new Enemy2();
+        let spike = new Spike();
+        let keys = {};
+        let Key = {
+            UP: 87,
+            DOWN: 83,
+            LEFT: 65,
+            RIGHT: 68
+        }
+        let success = false;
+        let bimg;
+        let fail = false;
+        let colliderightOne = false;
+        let collideleftOne = false;
+        let collidetopOne = false;
+        let collidebottomOne = false;
+        let colliderightTwo = false;
+        let collideleftTwo= false;
+        let collidetopTwo = false;
+        let collidebottomTwo = false;
+        let collideright3 = false;
+        let collideleft3= false;
+        let collidetop3 = false;
+        let collidebottom3 = false;
+        let trispike = spike.draw;
+        let moon = false;
+        function draw(){
+            background(bg);
+            player.draw();
+            enemy1.draw();
+            enemy1.update();
+            enemy1.close();
+            stageClear();
+            enemy1.fail();
+            enemy2.draw();
+            enemy2.update();
+            enemy2.fail();
+            enemy2.close();
+            wallOne.draw();
+            wallOne.collisiontopOne();
+            wallOne.collisionrightOne();
+            wallOne.collisionbottomOne();
+            wallOne.collisionleftOne();
+            wallTwo.draw();
+            wallTwo.collisiontopTwo();
+            wallTwo.collisionrightTwo();
+            wallTwo.collisionbottomTwo();
+            wallTwo.collisionleftTwo();
+            wall3.draw();
+            wall3.collisiontop3();
+            wall3.collisionright3();
+            wall3.collisionbottom3();
+            wall3.collisionleft3();
+            oob();
+            trispike();
+    
+            if(moon === true){
+                moon = 
+                fill("black")
+                ellipse(1000,200,200,200)
+
+            }
+            if(player.moving === true){
+                if(keys[Key.UP] && collidetopOne === false && keys[Key.UP] && collidetopTwo === false && keys[Key.UP] && collidetop3 === false){
+                player.moveUp();
+                }
+
+                if(keys[Key.DOWN] && collidebottomOne === false && keys[Key.DOWN] && collidebottomTwo === false && keys[Key.DOWN] && collidebottom3 === false){
+                    player.moveDown();
+                }
+
+                if(keys[Key.LEFT] && collideleftOne === false && keys[Key.LEFT] && collideleftTwo === false && keys[Key.LEFT] && collideleft3 === false){
+                    player.moveLeft();
+                }
+
+                if(keys[Key.RIGHT] && colliderightOne === false && keys[Key.RIGHT] && colliderightTwo === false && keys[Key.RIGHT] && collideright3 === false){
+                    player.moveRight();
+                }
+            }
+            if(success === true){
+                textSize(250)
+                textAlign("center", "center")
+                fill("white");
+                text("Stage Clear!", 800, 400)
+                
+            }
+            if(fail === true){
+                textSize(250)
+                textAlign("center", "center")
+                fill("coral");
+                text("You failed!", 800, 400)
+            }
+        }
+        
+        function keyPressed(){
+            keys[keyCode] = true;
+        }
+
+        function keyReleased(){
+            keys[keyCode] = false;
+        }
+
+        function stageClear(){
+            if(player.x > window.innerWidth){
+                success = true;
+                enemy1.moving = false;
+                enemy2.moving = false;
+                player.moving = false;
+            }
+        }
+        function oob(){
+            if(player.x < 0 || player.y < 0 || player.y > window.innerHeight){
+                fail = true;
+                enemy1.moving = false;
+                enemy2.moving = false;
+                player.moving = false;
+            }
+        }
+
+    </script>
+</body>
+</html>

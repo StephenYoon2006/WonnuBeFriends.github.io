@@ -27,15 +27,17 @@
             let newPadY = 0;
             let redScore = 0;
             let blueScore = 0;
+            let padysize = 150
+            let newpadysize = 150
             
             function draw(){
                 background("black");
                 fill("white")
                 ellipse(ballX, ballY, 20, 20);
                 fill("red")
-                rect(padX, padY, 20, 150);
+                rect(padX, padY, 20, padysize);
                 fill("blue")
-                rect(newPadX, newPadY, 20, 150);
+                rect(newPadX, newPadY, 20, newpadysize);
                 ballX += velocityX
                 ballY += velocityY
                 padY += leftpadv
@@ -57,11 +59,23 @@
                 else if(ballY < 0){         
                     velocityY = 10
                 }
-                else if(ballX > 770 && ballY > newPadY && ballY < newPadY + 200 && ballX < 800){
+                if(ballX > 770 && ballY > newPadY && ballY < newPadY + newpadysize && ballX < 800){
                     velocityX = -10
+                    padysize -= 10
+                    velocityY -= 3
+                    velocityX -= 3
+                    if(padysize < 0){
+                        padysize = 1
+                    }
                 }
-                else if(ballX < 30 && ballY > padY && ballY < padY + 200 && ballX > 0){
+                if(ballX < 30 && ballY > padY && ballY < padY + padysize && ballX > 0){
                     velocityX = 10
+                    newpadysize -= 10
+                    velocityY += 5
+                    velocityX += 5
+                    if(newpadysize < 0){
+                        newpadysize = 1
+                    }
                 }
                 else if(padY > 450){
                     padY = 450;
@@ -84,6 +98,9 @@
                     blueScore ++
                     ballX = 400;
                     ballY = 300;
+                    background("blue")
+                    padysize = 150;
+                    newpadysize = 150;
                     //the ball stops moving
                     velocityX = 0;
                     velocityY = 0;
@@ -96,6 +113,9 @@
                     redScore ++
                     ballX = 400;
                     ballY = 300;
+                    background("red")
+                    padysize = 150;
+                    newpadysize = 150;
                     //the ball stops moving
                     velocityX = 0;
                     velocityY = 0;
@@ -148,8 +168,7 @@
                     leftpadv = 0;
                 }
             }
-            
-    
+
         </script>
     </body>
 </html>
